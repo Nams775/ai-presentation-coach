@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Presentation Coach</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login/Registration Container -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-box">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <i class="fas fa-robot"></i>
+                    <h1>AI Practice Pro</h1>
+                </div>
+                <p class="auth-subtitle">Master communication skills with AI-powered coaching</p>
+            </div>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="loginTab">Login</div>
+                <div class="auth-tab" id="registerTab">Register</div>
+                <div class="auth-tab-indicator" id="tabIndicator" style="left: 0; width: 50%;"></div>
+            </div>
+            
+            <form class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" class="form-input" placeholder="you@example.com">
+                    <i class="fas fa-envelope form-input-icon"></i>
+                    <div class="error-message" id="loginEmailError">Please enter a valid email address</div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password">
+                    <i class="fas fa-lock form-input-icon"></i>
+                    <div class="error-message" id="loginPasswordError">Password is required</div>
+                </div>
+                <button type="button" class="auth-btn" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+                <div style="text-align: center; margin-top: 20px; font-size: 14px; color: var(--medium-gray)">
+                    <a href="#" style="color: var(--primary-blue); text-decoration: none;">Forgot your password?</a>
+                </div>
+            </form>
+            
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" class="form-input" placeholder="John Smith">
+                    <i class="fas fa-user form-input-icon"></i>
+                    <div class="error-message" id="registerNameError">Name is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" class="form-input" placeholder="you@example.com">
+                    <i class="fas fa-envelope form-input-icon"></i>
+                    <div class="error-message" id="registerEmailError">Please enter a valid email address</div>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" class="form-input" placeholder="Create a secure password">
+                    <i class="fas fa-lock form-input-icon"></i>
+                    <div class="error-message" id="registerPasswordError">Password must be at least 6 characters</div>
+                </div>
+                <button type="button" class="auth-btn" id="registerBtn">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+                <div style="text-align: center; margin-top: 20px; font-size: 14px; color: var(--medium-gray)">
+                    By registering, you agree to our <a href="#" style="color: var(--primary-blue); text-decoration: none;">Terms of Service</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Container -->
+    <div class="dashboard-container" id="dashboardContainer" style="display: none;">
+        <!-- History Panel -->
+        <div class="history-panel">
+            <div class="history-header">
+                <h3><i class="fas fa-history"></i> Practice History</h3>
+                <div class="user-info" style="margin-top: 10px; font-size: 14px; color: var(--medium-gray);">
+                    <i class="fas fa-user"></i> <span id="currentUserName">User</span>
+                </div>
+                <div class="history-actions">
+                    <button class="history-action-btn" id="newSessionBtn">
+                        <i class="fas fa-plus"></i> New
+                    </button>
+                    <button class="history-action-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+            <div class="history-list" id="historyList">
+                <!-- History items will be populated here -->
+            </div>
+        </div>
+
+        <!-- Main Area -->
+        <div class="main-area">
+            <!-- Chat Header -->
+            <div class="chat-header">
+                <div>
+                    <h2><i class="fas fa-comments"></i> AI Practice Session</h2>
+                    <div style="font-size: 14px; color: var(--medium-gray); margin-top: 5px;">
+                        Practice your communication skills with our AI coach
+                    </div>
+                </div>
+                <div class="session-status" id="sessionStatus">
+                    <i class="fas fa-check-circle"></i> Ready to Practice
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div class="chat-area" id="chatArea">
+                <!-- Messages will be populated here -->
+                <div class="message ai-message">
+                    <div class="message-sender">
+                        <div class="user-avatar ai-avatar">AI</div>
+                        AI Assistant
+                    </div>
+                    <div class="message-content">Hello! I'm your AI practice assistant. I can help you improve your communication, presentation, and interview skills. How would you like to practice today?</div>
+                    <div class="message-time">Just now</div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-area">
+                <!-- Input Methods -->
+                <div class="input-methods">
+                    <button class="input-btn active" id="textBtn">
+                        <i class="fas fa-keyboard"></i> Text Input
+                    </button>
+                    <button class="input-btn" id="fileBtn">
+                        <i class="fas fa-file-upload"></i> Upload File
+                    </button>
+                    <button class="input-btn" id="voiceBtn">
+                        <i class="fas fa-microphone"></i> Voice Practice
+                    </button>
+                </div>
+
+                <!-- Text Input -->
+                <div class="text-input-container" id="textInputContainer">
+                    <textarea class="text-input" id="textInput" placeholder="Type your practice content here... (e.g., 'I want to practice for a technical interview at Google')"></textarea>
+                </div>
+
+                <!-- File Upload UI -->
+                <div class="file-upload-ui" id="fileUploadUI">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p style="font-size: 16px; margin-bottom: 8px;">Drag & drop your files here</p>
+                    <p style="font-size: 14px; color: var(--medium-gray); margin-bottom: 20px;">or <span style="color: var(--primary-blue); cursor: pointer; font-weight: 600;" id="browseFiles">browse files</span></p>
+                    <p style="font-size: 13px; color: var(--medium-gray);">Supported: PDF, DOC, TXT (Max 10MB)</p>
+                    <input type="file" id="fileInput" style="display: none;" multiple>
+                    <div id="fileList" style="margin-top: 20px;"></div>
+                </div>
+
+                <!-- Voice Recording UI -->
+                <div class="recording-ui" id="recordingUI">
+                    <div class="voice-visualizer" id="voiceVisualizer">
+                        <div class="voice-wave" id="voiceWave"></div>
+                    </div>
+                    <div class="recording-controls">
+                        <div class="recording-info">
+                            <div class="recording-indicator">
+                                <div class="recording-dot" id="recordingDot" style="display: none;"></div>
+                                <div class="timer" id="timer">00:00</div>
+                            </div>
+                            <div id="recordingStatus" style="font-weight: 500; color: var(--medium-gray);">Ready to record</div>
+                        </div>
+                        <div class="recording-buttons">
+                            <button class="action-btn success-btn" id="startRecordingBtn">
+                                <i class="fas fa-microphone"></i> Start Recording
+                            </button>
+                            <button class="action-btn danger-btn" id="stopRecordingBtn" disabled>
+                                <i class="fas fa-stop"></i> Stop Recording
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="action-btn secondary-btn" id="clearBtn">
+                        <i class="fas fa-trash-alt"></i> Clear
+                    </button>
+                    <button class="action-btn primary-btn" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i> Submit Content
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Purpose Selection Modal -->
+    <div class="modal-overlay" id="purposeModal">
+        <div class="purpose-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-bullseye"></i> Select Practice Purpose</h3>
+                <p style="margin-top: 8px; opacity: 0.9;">Choose a practice scenario to get started</p>
+            </div>
+            <div class="modal-content">
+                <div class="purpose-grid" id="purposeGrid">
+                    <!-- Purpose cards will be populated here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="action-btn secondary-btn" id="cancelPurposeBtn">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="action-btn success-btn" id="confirmPurposeBtn" disabled>
+                    <i class="fas fa-play"></i> Start Practice
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div>
+            <div class="spinner"></div>
+            <div style="margin-top: 20px; font-weight: 600; color: var(--primary-blue);" id="loadingMessage">Loading...</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "ai-practice-frontend",
+  "version": "1.0.0",
+  "description": "AI Practice Platform Frontend",
+  "main": "script.js",
+  "scripts": {
+    "start": "live-server --port=3000 --open=/",
+    "dev": "live-server --port=3000 --open=/"
+  },
+  "dependencies": {
+    "live-server": "^1.2.2"
+  }
+}
