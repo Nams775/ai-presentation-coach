@@ -134,6 +134,10 @@ OUTPUT
 https://github.com/user-attachments/assets/3d323e06-6ccc-4585-ac89-7a0d3c86e80e
 
 Deployement:https://ai-presentation-coach-3822c.web.app
+### 🚀 Deployment Status
+- Frontend: Firebase Hosting ✅
+- Backend: Render ✅
+
 
 **
 
