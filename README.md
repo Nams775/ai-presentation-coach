@@ -135,5 +135,5 @@ AI-assisted development tools
 **
 
 
-https://github.com/user-attachments/assets/0548f23b-c60c-4500-acb4-d69e496b33ad
+
 
